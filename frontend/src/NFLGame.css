@@ -1,0 +1,14 @@
+.positive{
+    color: rgb(114, 232, 114);
+}
+.negative{
+    color: #f47a7a;
+}
+.gameodds{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background-color: #1a1a1a;
+    padding: .5rem;
+    border-radius: 5px;
+}

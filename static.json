@@ -1,5 +1,5 @@
 {
-	"root": "backend/dist/",
+	"root": "static/",
 	"routes": {
 		"/**": "index.html"
 	}

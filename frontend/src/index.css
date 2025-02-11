@@ -1,0 +1,12 @@
+
+  body {
+    background-color: #111111;
+    background-image: url('m.png');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: 200px 200px;
+    z-index: -1;
+    font-family: 'Inter', sans-serif;
+  }
+  
+

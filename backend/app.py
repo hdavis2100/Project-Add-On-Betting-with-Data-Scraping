@@ -6,8 +6,15 @@ from flask import send_from_directory
 
 from scrapers.oddsshark import scrape_oddsshark_nba_odds
 
-app = Flask(__name__, static_folder="dist", static_url_path="")
-CORS(app)
+app = Flask(__name__, static_folder="static", static_url_path="/")
+
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve_react(path):
+    static_dir = os.path.join(os.path.dirname(__file__), "static")
+    if path != "" and os.path.exists(os.path.join(static_dir, path)):
+        return send_from_directory(static_dir, path)
+    return send_from_directory(static_dir, "index.html")
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -37,18 +44,13 @@ def ufc_odds():
         logger.error("Error scraping Oddsshark UFC: %s", e)
         return jsonify({"error": "Failed to scrape UFC odds"}), 500
 
+
+
+
+
+
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
-
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def serve(path):
-    dist_folder = os.path.join(os.getcwd(), "dist")
-    if path != "" and os.path.exists(os.path.join(dist_folder, path)):
-        return send_from_directory("dist", path)
-    else:
-        return send_from_directory("dist", "index.html")
-
+    app.run(debug=True)
 
 
 
