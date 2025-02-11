@@ -1,0 +1,6 @@
+{
+	"root": "backend/dist/",
+	"routes": {
+		"/**": "index.html"
+	}
+}
