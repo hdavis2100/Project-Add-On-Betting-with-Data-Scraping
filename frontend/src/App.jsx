@@ -105,7 +105,7 @@ function App() {
   useEffect(() => {
     const fetchNbaOddsData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/nba/odds");
+        const response = await fetch("/api/nba/odds");
         const data = await response.json();
         setNbaGamesOdds(data);
         setUpcomingNbaGamesOdds(data);
@@ -115,7 +115,7 @@ function App() {
     };
     const fetchUfcOddsData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/ufc/odds");
+        const response = await fetch("/api/ufc/odds");
         const data = await response.json();
         setUfcGamesOdds(data);
         setUpcomingUfcGamesOdds(data);
