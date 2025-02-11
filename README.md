@@ -1,0 +1,1 @@
+This website is a continuation of my sports betting website project. The initial project took data from theoddsapi.com 's api, and I've adapted this version to scrape betting data from oddsshark.com. The website is still undergoing improvements; it currently only offers games and betting odds data. 
