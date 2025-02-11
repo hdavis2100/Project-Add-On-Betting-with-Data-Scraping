@@ -2,6 +2,8 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 import logging
 import os
+from flask import send_from_directory
+
 from scrapers.oddsshark import scrape_oddsshark_nba_odds
 
 app = Flask(__name__, static_folder="dist", static_url_path="")
@@ -37,6 +39,15 @@ def ufc_odds():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path):
+    dist_folder = os.path.join(os.getcwd(), "dist")
+    if path != "" and os.path.exists(os.path.join(dist_folder, path)):
+        return send_from_directory("dist", path)
+    else:
+        return send_from_directory("dist", "index.html")
 
 
 
