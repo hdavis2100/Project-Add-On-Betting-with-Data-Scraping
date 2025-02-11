@@ -2,7 +2,8 @@ from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 import logging
 import os
-from scrapers.oddsshark import scrape_oddsshark_nba_odds, scrape_oddsshark_ufc_odds
+from .scrapers.oddsshark import scrape_oddsshark_nba_odds, scrape_oddsshark_ufc_odds
+
 
 app = Flask(__name__, static_folder="static", static_url_path="/")
 CORS(app)
