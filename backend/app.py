@@ -1,10 +1,12 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 import logging
-from scrapers.oddsshark import scrape_oddsshark_nba_odds, scrape_oddsshark_ufc_odds
+import os
+from scrapers.oddsshark import scrape_oddsshark_nba_odds
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="dist", static_url_path="")
 CORS(app)
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -12,6 +14,9 @@ logger = logging.getLogger(__name__)
 def index():
     return "Backend is working!"
 
+@app.route("/")
+def serve_index():
+    return send_from_directory(app.static_folder, "index.html")
 @app.route("/api/nba/odds")
 def nba_odds():
     try:
